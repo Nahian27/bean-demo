@@ -1,21 +1,9 @@
 FROM bellsoft/liberica-openjdk-alpine:21
 
-WORKDIR /app
+COPY . .
 
-COPY mvnw .
-COPY .mvn .mvn
-COPY pom.xml .
-
-RUN ./mvnw dependency:go-offline
-
-COPY src src
-
-RUN ./mvnw package -DskipTests
-
-VOLUME /tmp
-
-COPY ./target/*.jar app.jar
+RUN ./mvnw clean package -DskipTests
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "/app.jar"]
+CMD ["java", "-jar", "/target/*.jar"]
