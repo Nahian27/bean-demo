@@ -12,6 +12,8 @@ COPY src src
 
 RUN ./mvnw package -DskipTests
 
+COPY target/*.jar app.jar
+
 EXPOSE 8080
 
-CMD ["java", "-jar", "target/*.jar"]
+CMD ["java", "-jar", "app.jar"]
