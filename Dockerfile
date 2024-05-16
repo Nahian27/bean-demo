@@ -12,6 +12,8 @@ COPY src src
 
 RUN ./mvnw package -DskipTests
 
+VOLUME /tmp
+
 COPY ./target/*.jar app.jar
 
 EXPOSE 8080
